@@ -1,0 +1,48 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    darin-zypprepo (1.0.2)
+    example42-puppi (2.2.1)
+    example42-yum (2.1.27)
+      example42-puppi (>= 2.0.0)
+    h4x-firefox (0.3.4)
+      maestrodev-wget (~> 1.0)
+      puppetlabs-stdlib (~> 4.0)
+    maestrodev-wget (1.7.3)
+    puppet-nodejs (2.1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.1.0)
+      treydock-gpg_key (< 1.0.0, >= 0.0.3)
+    puppet-staging (2.0.1)
+    puppetlabs-apache (1.10.0)
+      puppetlabs-concat (< 3.0.0, >= 1.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
+    puppetlabs-apt (2.3.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-concat (2.2.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    puppetlabs-inifile (1.6.0)
+    puppetlabs-mysql (3.9.0)
+      puppet-staging (< 3.0.0, >= 1.0.1)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+    puppetlabs-stdlib (4.12.0)
+    treydock-gpg_key (0.0.3)
+
+GIT
+  remote: https://github.com/mayflower/puppet-php
+  ref: master
+  sha: 2cdf3af52d3a80a3b88420df73f16ff9e4672e1b
+  specs:
+    mayflower-php (4.0.0-beta1)
+      darin-zypprepo (~> 1.0)
+      example42-yum (~> 2.0)
+      puppetlabs-apt (< 3.0.0, >= 1.8.0)
+      puppetlabs-inifile (~> 1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+
+DEPENDENCIES
+  h4x-firefox (>= 0)
+  mayflower-php (>= 0)
+  puppet-nodejs (>= 0)
+  puppetlabs-apache (>= 0)
+  puppetlabs-mysql (>= 0)
+

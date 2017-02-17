@@ -83,6 +83,10 @@ fi
       'PHP/memory_limit' => '-1',
       'PHP/short_open_tag' => 'Off',
     },
+  } ->
+  exec { 'disable xdebug':
+      command => "sudo phpdismod -s cli xdebug && sudo phpdismod -s fpm xdebug && sudo service php7.0-fpm restart",
+      path    => ['/bin/', '/usr/bin', '/usr/local/bin'],
   }
 
   $web_folder = "/var/www/html"

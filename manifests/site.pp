@@ -162,6 +162,11 @@ fi
     target => '/opt/firefox/firefox',
   }
 
+  package { 'yarn':
+    ensure   => 'present',
+    provider => 'npm',
+  }
+
   package { 'selenium-standalone':
     ensure   => 'present',
     provider => 'npm',

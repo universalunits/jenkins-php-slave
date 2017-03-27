@@ -43,4 +43,3 @@ DEPENDENCIES
   puppet-nodejs (>= 0)
   puppetlabs-apache (>= 0)
   puppetlabs-mysql (>= 0)
-

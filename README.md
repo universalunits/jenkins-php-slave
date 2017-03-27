@@ -7,7 +7,6 @@
 ### Using docker to test the configuration
 
 ``` bash
-$ docker run --rm -v $(pwd):/puppet ubuntu:16.04 /bin/bash
-$ apt-get update && apt-get install -y sudo
-$ /puppet/provision.sh
+docker run --rm -it -v $(pwd):/puppet ubuntu:16.04 /bin/bash
+apt-get update && apt-get install -y sudo git && /puppet/provision.sh
 ```

@@ -146,27 +146,8 @@ fi
   }
 
   class { 'nodejs':
-    # Some node.js packages assume /usr/bin/node to be available, the default is /usr/bin/nodejs.
-    # For some reason legacy_debian_symlinks must be defined before npm_package_ensure, or npm will not be installed. (Can someone confirm on his dev env?)
-
-    legacy_debian_symlinks => true,
-    npm_package_ensure => 'present',
-  }
-
-  class { 'firefox' :
-    version => '47.0.1',
+    repo_url_suffix => '7.x',
   } ->
-  file { 'create firefox symlink':
-    ensure => link,
-    path   => '/usr/local/bin/firefox',
-    target => '/opt/firefox/firefox',
-  }
-
-  package { 'yarn':
-    ensure   => 'present',
-    provider => 'npm',
-  }
-
   package { 'selenium-standalone':
     ensure   => 'present',
     provider => 'npm',
@@ -174,6 +155,19 @@ fi
   exec { 'install selenium':
     command => "selenium-standalone install --version=2.53.1",
     path    => ['/bin/', '/usr/bin', '/usr/local/bin'],
+  } ->
+  package { 'yarn':
+    ensure   => 'present',
+    provider => 'npm',
+  }
+
+  class { 'firefox':
+    version => '47.0.1',
+  } ->
+  file { 'create firefox symlink':
+    ensure => link,
+    path   => '/usr/local/bin/firefox',
+    target => '/opt/firefox/firefox',
   }
 
   # We could use https://forge.puppet.com/puppet/unattended_upgrades to manage unattended-upgrades, but for now this is enough

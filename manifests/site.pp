@@ -22,11 +22,11 @@ node default {
   }
   file { '/etc/profile.d/xdebug_env_aliases.sh':
     content => "#!/bin/sh
-alias xdebuginfo='printf \"PHP xdebug extension:\\n* cli: %s\\n* fpm: %s\\n\" \"`phpquery -v 7.0 -s cli -m xdebug`\" \"`phpquery -v 7.0 -s fpm -m xdebug`\"'
+alias xdebuginfo='printf \"PHP xdebug extension:\\n* cli: %s\\n* fpm: %s\\n\" \"`phpquery -v 7.1 -s cli -m xdebug`\" \"`phpquery -v 7.1 -s fpm -m xdebug`\"'
 alias xdebugoncli='sudo phpenmod -s cli xdebug'
 alias xdebugoffcli='sudo phpdismod -s cli xdebug'
-alias xdebugonfpm='sudo phpenmod -s fpm xdebug && sudo service php7.0-fpm restart'
-alias xdebugofffpm='sudo phpdismod -s fpm xdebug && sudo service php7.0-fpm restart'
+alias xdebugonfpm='sudo phpenmod -s fpm xdebug && sudo service php7.1-fpm restart'
+alias xdebugofffpm='sudo phpdismod -s fpm xdebug && sudo service php7.1-fpm restart'
 alias xdebugon='xdebugoncli && xdebugonfpm && xdebuginfo'
 alias xdebugoff='xdebugoffcli && xdebugofffpm && xdebuginfo'
 
@@ -39,8 +39,13 @@ fi
 ",
   }
 
+  class { '::php::globals':
+    php_version => '7.1',
+    config_root => '/etc/php/7.1',
+  }->
   class { '::php':
-    package_prefix => 'php-',
+    package_prefix => 'php7.1-',
+    manage_repos => true,
     fpm => true,
     composer => true,
     # pear => true,
@@ -85,7 +90,7 @@ fi
     },
   } ->
   exec { 'disable xdebug':
-      command => "sudo phpdismod -s cli xdebug && sudo phpdismod -s fpm xdebug && sudo service php7.0-fpm restart",
+      command => "sudo phpdismod -s cli xdebug && sudo phpdismod -s fpm xdebug && sudo service php7.1-fpm restart",
       path    => ['/bin/', '/usr/bin', '/usr/local/bin'],
   }
 
